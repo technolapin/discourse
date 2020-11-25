@@ -1,6 +1,10 @@
-// backwards compatibility for plugins that depend on this initializer
+import { setDefaultOwner } from "discourse-common/lib/get-owner";
 
 export default {
   name: "inject-objects",
-  initialize() {},
+  initialize(container, app) {
+    // This is required for tests to work
+    // TODO: is it??
+    setDefaultOwner(app.__container__);
+  },
 };

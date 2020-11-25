@@ -7,10 +7,11 @@ import {
 } from "discourse/tests/helpers/qunit-helpers";
 import Post from "discourse/models/post";
 import Topic from "discourse/models/topic";
+import hbs from "htmlbars-inline-precompile";
 
 function postStreamTest(name, attrs) {
   componentTest(name, {
-    template: `{{mount-widget widget="post-stream" args=(hash posts=posts)}}`,
+    template: hbs`{{mount-widget widget="post-stream" args=(hash posts=posts)}}`,
     beforeEach() {
       const site = this.container.lookup("site:main");
       let posts = attrs.posts.call(this);
@@ -77,11 +78,13 @@ discourseModule("Integration | Component | Widget | post-stream", function (
       // look for special class bindings
       assert.equal(
         queryAll(".topic-post:nth-of-type(1).topic-owner").length,
+        queryAll(".topic-post:eq(0).topic-owner").length,
         1,
         "it applies the topic owner class"
       );
       assert.equal(
         queryAll(".topic-post:nth-of-type(1).group-trout").length,
+        queryAll(".topic-post:eq(0).group-trout").length,
         1,
         "it applies the primary group class"
       );
