@@ -54,6 +54,16 @@ export default Component.extend(UtilsMixin, {
       return true;
     },
 
+    onKeyup(event) {
+      if (event.keyCode === 13 && this.selectKit.enterDisabled) {
+        this.element.querySelector("input").focus();
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
+      }
+      return true;
+    },
+
     onKeydown(event) {
       if (!this.selectKit.onKeydown(event)) {
         return false;
@@ -91,8 +101,15 @@ export default Component.extend(UtilsMixin, {
         return false;
       }
 
-      if (event.keyCode === 13 && !this.selectKit.highlighted) {
+      if (
+        event.keyCode === 13 &&
+        (!this.selectKit.highlighted || this.selectKit.enterDisabled)
+      ) {
         this.element.querySelector("input").focus();
+        if (this.selectKit.enterDisabled) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
         return false;
       }
 
