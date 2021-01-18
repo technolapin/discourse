@@ -567,7 +567,7 @@ en:
           other: "You have <strong>%{count}</strong> posts pending."
         ok: "OK"
       example_username: "username"
-      reject_reason: 
+      reject_reason:
         title: "Why are you rejecting this user?"
         send_email: "Send rejection email"
 
@@ -1481,6 +1481,7 @@ en:
       avatar:
         title: "Profile Picture"
         header_title: "profile, messages, bookmarks and preferences"
+        name_and_description: "%{name} - %{description}"
       title:
         title: "Title"
         none: "(none)"
